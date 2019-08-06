@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="asserts/css/signin.css" rel="stylesheet">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登陆</title>
+</head>
+<body>
+
+
+
+<div class="auth-form px-3" style="width: 300px;height: 500px;margin:0 auto ;border:3px ;margin-top: 100px" id="login">
+
+    <form class="form-signin" role="form" action="/login" method="post">
+        <div class="form-group">
+
+            <input type="text" class="form-control" name="username"  placeholder="username" required="" autofocus="">
+        </div>
+        <div class="form-group">
+
+            <input type="password" name="password"  class="form-control" placeholder="Password"  required="">
+        </div>
+        <div class="form-group">
+            <input type="text" placeholder="输入验证码" name="verifyCode" id="signcode" style="vertical-align:middle;border-radius:4px;border: 1px solid #ccc;width: 35%;height: 34px;padding: 6px 12px;font-size: 14px; line-height: 1.42857143;color: #555;background-color: #fff;background-image: none;">
+
+
+            <img id="img"  th:src="@{/createImg}" onclick="javascript:changeImg()"/>
+            <br/>
+            <!--<input type="checkbox" value="remember-me " >记住我-->
+
+        </div>
+        <div class="form-group">
+            <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"> 错误消息</p>
+
+        </div>
+        <div class="form-group" style="text-align: center">
+            <button class="btn btn-lg btn-primary btn-block" type="submit" >登录</button>
+        </div>
+        <!--<div style="text-align: right;margin-bottom: 1px">
+        <a href="#" > 忘记密码 </a>
+        </div>-->
+    </form>
+</div>
+
+
+
+
+</body>
+<script type="text/javascript">
+    function changeImg() {
+        // var img = document.getElementById("img");
+        $("#img").attr("src","/createImg?date=" + new Date().getTime());
+    }
+</script>
+</html>
